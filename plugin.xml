@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	id="com.android.startapp"
+	version="0.0.4">
+
+    <name>startApp</name>
+    <description>start native app android</description>
+    <license>MIT</license>
+    <keywords>cordova,startapp</keywords>
+
+    <js-module src="www/startApp.js" name="startapp">
+        <merges target="startApp" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="startApp">
+                <param name="android-package" value="com.android.startapp.startApp"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/startApp.java" target-dir="src/com/android/startapp" />
+    </platform>
+
+</plugin>

@@ -1,42 +1,42 @@
-# StartApp plugin for Cordova
+This is fork of lampaa's startapp PhongapPlugin (https://github.com/lampaa/com.lampa.startapp)
 
-## License
+Plugin to cordova 3.0 or above. Plugin to launch application in android device by Intent Action.
 
-MIT/X11
+***
+	Go to your project directory and run the commands below:
 
-## Usage
+	- CORDOVA PROJECT
+		To install plugin:
+			cordova plugin add "git url"
 
-See Android and iOS folders for Android and iOS usage, respectivelly.
+		To remove plugin:
+			cordova plugin remove com.android.startapp
 
-### If you want to build for both platforms
+	- IONIC PROJECT
+	To install plugin:
+			ionic plugin add "git ulr"
 
-1. Add `iOS/StartApp.m` and `iOS/StartApp.h` files to your iOS project in
-   `Plugins` directory.
-2. Add `iOS/startapp.js` to your web application as `startapp.ios.js`.
-3. Add
+		To remove plugin:
+			ionic plugin remove com.android.startapp
 
-        <key>StartApp</key>
-        <string>StartApp</string>
+***
+	SAMPLES TO USE PLUGIN
 
-   to your `Cordova.plist` inside `<key>Plugins</key><dict>...</dict>`
-4. Copy `Android/StartApp.java` to `src/com/phonegap/plugins/startapp`
-   directory of your Android project.
-5. Add `Android/startapp.js` to your web application as `startapp.android.js`.
-6. Add
+// Callback method that recive "OK" message to sucess.
+var _successCallback = function (message) {
+	console.log(message);
+};
 
-        <plugin name="StartApp" value="com.phonegap.plugins.startapp.StartApp"/>
+// Callback method that recive error message.
+var _errorCallback = function (message) {
+	console.log(message);
+};
 
-   to your `res/xml/config.xml` inside `<plugins></plugins>`.
-7. Copy corresponding JS file to `startapp.js` when building the project.
-8. Include `startapp.js` on your HTML pages.
-8. Use
+// "Action" valeu to launch the Gallery application
+startApp._start(["android.intent.category.APP_GALLERY"], _successCallback, _errorCallback);
 
-        window.startapp.start(
-            {
-                android: 'com.mycompany.myapp/com.mycompany.myapp.MyActivity',
-                ios: 'myURL'
-            },
-            successCallback, failureCallback
-        );
+// "Action" valeu to launch CAMERA application
+startApp._start(["android.media.action.IMAGE_CAPTURE"], _successCallback, _errorCallback);
 
-   whenever required.
+// "Action" valeu to launch the SETTINGS application
+startApp._start(["android.settings.SETTINGS"], _successCallback, _errorCallback);
