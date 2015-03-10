@@ -1,4 +1,4 @@
-This is fork of lampaa's startapp PhongapPlugin (https://github.com/lampaa/com.lampa.startapp)
+This is fork of lampaa's startapp Phonegap Plugin (https://github.com/lampaa/com.lampa.startapp)
 
 Plugin to cordova 3.0 or above. Plugin to launch application in android device by Intent Action.
 
@@ -14,7 +14,7 @@ Plugin to cordova 3.0 or above. Plugin to launch application in android device b
 
 	- IONIC PROJECT
 	To install plugin:
-			ionic plugin add "git ulr"
+			ionic plugin add "git url"
 
 		To remove plugin:
 			ionic plugin remove com.android.startapp
@@ -22,12 +22,12 @@ Plugin to cordova 3.0 or above. Plugin to launch application in android device b
 ***
 	SAMPLES TO USE PLUGIN
 
-// Callback method that recive "OK" message to sucess.
+// Callback method that get "OK" message to sucess.
 var _successCallback = function (message) {
 	console.log(message);
 };
 
-// Callback method that recive error message.
+// Callback method that get error message.
 var _errorCallback = function (message) {
 	console.log(message);
 };
