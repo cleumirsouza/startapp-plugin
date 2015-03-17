@@ -43,14 +43,31 @@ public class startApp extends CordovaPlugin {
         try {
                 intentAppName = args.getString(0);
 
-                if(intentAppName.toString().equalsIgnoreCase("android.intent.category.APP_GALLERY")) {
-                    intent = new Intent();
-                    intent.setAction(android.content.Intent.ACTION_VIEW);
-                    intent.setType("image/*");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // intent = new Intent();
+
+                // Open a external app with Config intent to receive session, user id and user name to another app.
+                if(args.length() > 1) {
+
+                    // intent = new Intent(intentAppName);
+                    intent.putExtra("sessionId", args.getString(1));
+                    intent.putExtra("userId", args.getString(2));
+                    intent.putExtra("userName", args.getString(3));
+
                 } else {
-                    intent = new Intent(intentAppName);
+
+                    //open external app by intent action
+                    if(intentAppName.toString().equalsIgnoreCase("android.intent.category.APP_GALLERY")) {
+                        // intent = new Intent(intentAppName);
+                        intent.setAction(android.content.Intent.ACTION_VIEW);
+                        intent.setType("image/*");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                    //  else {
+                    //     intent = new Intent(intentAppName);
+                    // }
+
                 }
+                intent = new Intent(intentAppName);
 
                 this.cordova.getActivity().startActivity(intent);
                 callback.success();
