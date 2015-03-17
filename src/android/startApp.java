@@ -1,12 +1,13 @@
 package com.android.startapp;
 
+import java.util.Iterator;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Intent;
-import android.net.Uri;
 
 /**
  * This class provides access to vibration on the device.
@@ -42,32 +43,41 @@ public class startApp extends CordovaPlugin {
 
         try {
                 intentAppName = args.getString(0);
-
-                // intent = new Intent();
+                intent = new Intent(intentAppName);
 
                 // Open a external app with Config intent to receive session, user id and user name to another app.
                 if(args.length() > 1) {
 
-                    // intent = new Intent(intentAppName);
-                    intent.putExtra("sessionId", args.getString(1));
-                    intent.putExtra("userId", args.getString(2));
-                    intent.putExtra("userName", args.getString(3));
+                    JSONArray params = args.getJSONArray(1);
+                    String key;
+                    String value;
+
+                    for(int i = 0; i < params.length(); i++) {
+                        if (params.get(i) instanceof JSONObject) {
+                            Iterator<String> iter = params.getJSONObject(i).keys();
+
+                             while (iter.hasNext()) {
+
+                                key = iter.next();
+
+                                try {
+                                    value = params.getJSONObject(i).getString(key);
+                                    intent.putExtra(key, value);
+                                } catch (JSONException e) {
+                                    callback.error("json params: " + e.toString());
+                                }
+                            }
+                        }
+                    }
 
                 } else {
-
                     //open external app by intent action
                     if(intentAppName.toString().equalsIgnoreCase("android.intent.category.APP_GALLERY")) {
-                        // intent = new Intent(intentAppName);
                         intent.setAction(android.content.Intent.ACTION_VIEW);
                         intent.setType("image/*");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
-                    //  else {
-                    //     intent = new Intent(intentAppName);
-                    // }
-
                 }
-                intent = new Intent(intentAppName);
 
                 this.cordova.getActivity().startActivity(intent);
                 callback.success();

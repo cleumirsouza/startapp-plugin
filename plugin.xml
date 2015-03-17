@@ -9,7 +9,7 @@
     <license>MIT</license>
     <keywords>cordova,startapp</keywords>
 
-    <js-module src="www/startApp.js" name="startapp">
+    <js-module src="www/startApp.js" name="startApp">
         <merges target="startApp" />
     </js-module>
 
