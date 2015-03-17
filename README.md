@@ -22,7 +22,11 @@ Plugin to cordova 3.0 or above. Plugin to launch application in android device b
 ***
 	SAMPLES TO USE PLUGIN
 
+<<<<<<< HEAD
 	Callback method that get "OK" message to sucess.
+=======
+	Callback method that get success message to sucess.
+>>>>>>> edit readme
 
 var _successCallback = function (message) {
 	console.log(message);
@@ -34,6 +38,7 @@ var _errorCallback = function (message) {
 	console.log(message);
 };
 
+<<<<<<< HEAD
 	"Action" valeu to launch the Gallery application
 
 startApp._start(["android.intent.category.APP_GALLERY"], _successCallback, _errorCallback);
@@ -43,12 +48,31 @@ startApp._start(["android.intent.category.APP_GALLERY"], _successCallback, _erro
 startApp._start(["android.media.action.IMAGE_CAPTURE"], _successCallback, _errorCallback);
 
 	"Action" valeu to launch the SETTINGS application
+=======
+	Action valeu to launch the Gallery application
+
+startApp._start(["android.intent.category.APP_GALLERY"], _successCallback, _errorCallback);
+
+	Action valeu to launch CAMERA application
+
+startApp._start(["android.media.action.IMAGE_CAPTURE"], _successCallback, _errorCallback);
+
+	Action valeu to launch the SETTINGS application
+>>>>>>> edit readme
 
 startApp._start(["android.settings.SETTINGS"], _successCallback, _errorCallback);
 
 	Sample to launch app with params (key: value).
 
 var args = [["yourIntent"], [{"sessionId": "123"}, {"userId": "appadmin"}, {"userName": "admin"}]];
+<<<<<<< HEAD
 startApp._start(args, _successCallback, _errorCallback);
 
 Ps: If you want starp app only values -> startApp._start([["yourIntent"], ["param1", "param2", "paramN"]], _successCallback, _errorCallback);
+=======
+
+startApp._start(args, _successCallback, _errorCallback);
+
+	Ps: If you want start app only values
+	-> startApp._start([["yourIntent"], ["param1", "param2", "paramN"]], _successCallback, _errorCallback);
+>>>>>>> edit readme
