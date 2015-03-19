@@ -48,9 +48,8 @@ startApp._start(["android.settings.SETTINGS"], _successCallback, _errorCallback)
 
 	Sample to launch app with params (key: value).
 
-var args = [["yourIntent"], [{"sessionId": "123"}, {"userId": "appadmin"}, {"userName": "admin"}]];
+var appBundle = "yourIntent";
+var params = {"sessionId": "123", "userId": "admin", "userName": "jhon"};
 
-startApp._start(args, _successCallback, _errorCallback);
+startApp._start([appBundle, params], _successCallback, _errorCallback);
 
-	Ps: If you want start app only values
-	startApp._start([["yourIntent"], ["param1", "param2", "paramN"]], _successCallback, _errorCallback);
