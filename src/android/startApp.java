@@ -48,25 +48,21 @@ public class startApp extends CordovaPlugin {
                 // Open a external app with Config intent to receive session, user id and user name to another app.
                 if(args.length() > 1) {
 
-                    JSONArray params = args.getJSONArray(1);
+                    JSONObject params = args.getJSONObject(1);
                     String key;
                     String value;
 
-                    for(int i = 0; i < params.length(); i++) {
-                        if (params.get(i) instanceof JSONObject) {
-                            Iterator<String> iter = params.getJSONObject(i).keys();
+                    Iterator<String> iter = params.keys();
 
-                             while (iter.hasNext()) {
+                    while (iter.hasNext()) {
 
-                                key = iter.next();
+                        key = iter.next();
 
-                                try {
-                                    value = params.getJSONObject(i).getString(key);
-                                    intent.putExtra(key, value);
-                                } catch (JSONException e) {
-                                    callback.error("json params: " + e.toString());
-                                }
-                            }
+                        try {
+                            value = params.getString(key);
+                            intent.putExtra(key, value);
+                        } catch (JSONException e) {
+                            callback.error("json params: " + e.toString());
                         }
                     }
 
